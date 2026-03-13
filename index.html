@@ -1,1166 +1,819 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NTE do IEE</title>f
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        /* Fundo inspirado na imagem: gradiente de amarelo/laranja para azul/ciano */
-        background: linear-gradient(
-          135deg,
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NTE do IEE</title>f
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      /* Fundo inspirado na imagem: gradiente de amarelo/laranja para azul/ciano */
+      background: linear-gradient(135deg,
           #f59e0b 0%,
           #14b8a6 45%,
-          #1e3a8a 100%
-        );
-        background-attachment: fixed;
-        position: relative;
-      }
-      /* Adicionar um padrão de pontos para simular textura */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(
-          rgba(255, 255, 255, 0.15) 1px,
-          transparent 1px
-        );
-        background-size: 24px 24px;
-        pointer-events: none;
-        z-index: -1;
-      }
-      .tech-font {
-        font-family: "Fira Code", monospace;
-      } /* Fonte super legível, diferencia I, l, 1, O, 0 */
-      .title-font {
-        font-family: "Rajdhani", sans-serif;
-      }
-      /* Efeito de vidro escuro para contrastar com o fundo vibrante */
-      .glass-panel {
-        background: rgba(15, 23, 42, 0.85);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-      }
-      .glass-card {
-        background: linear-gradient(
-          135deg,
+          #1e3a8a 100%);
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    /* Adicionar um padrão de pontos para simular textura */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px,
+          transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .tech-font {
+      font-family: "Fira Code", monospace;
+    }
+
+    /* Fonte super legível, diferencia I, l, 1, O, 0 */
+    .title-font {
+      font-family: "Rajdhani", sans-serif;
+    }
+
+    /* Efeito de vidro escuro para contrastar com o fundo vibrante */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .glass-card {
+      background: linear-gradient(135deg,
           rgba(255, 255, 255, 0.08) 0%,
-          rgba(255, 255, 255, 0.02) 100%
-        );
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease,
-          border-color 0.3s ease;
-      }
-      .glass-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-    </style>
+          rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  </style>
 </head>
-  <body
-    class="min-h-screen flex items-center justify-center p-4 sm:p-8 text-slate-200 overflow-x-hidden"
-  >
-    <!-- Decoração de Fundo (Circuitos inspirados na imagem) -->
-    <svg
-      class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-30 z-[-1]"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M -50 150 L 150 150 L 250 250 L 250 1200"
-        stroke="#ffffff"
-        stroke-width="1.5"
-        fill="none"
-        opacity="0.5"
-      />
-      <circle cx="150" cy="150" r="4" fill="#ffffff" opacity="0.8" />
-      <circle cx="250" cy="250" r="4" fill="#ffffff" opacity="0.8" />
-      <path
-        d="M 110vw 250 L calc(100vw - 200px) 250 L calc(100vw - 300px) 350 L calc(100vw - 300px) 1200"
-        stroke="#ffffff"
-        stroke-width="1.5"
-        fill="none"
-        opacity="0.5"
-      />
-      <circle
-        cx="calc(100vw - 200px)"
-        cy="250"
-        r="4"
-        fill="#ffffff"
-        opacity="0.8"
-      />
-      <circle
-        cx="calc(100vw - 300px)"
-        cy="350"
-        r="4"
-        fill="#ffffff"
-        opacity="0.8"
-      />
 
-      <path
-        d="M 80 -50 L 80 300 L 150 370 L 150 800"
-        stroke="#fcd34d"
-        stroke-width="2"
-        fill="none"
-        opacity="0.6"
-      />
-      <circle cx="80" cy="300" r="5" fill="#fcd34d" opacity="0.9" />
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-8 text-slate-200 overflow-x-hidden">
+  <!-- Decoração de Fundo (Circuitos inspirados na imagem) -->
+  <svg class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-30 z-[-1]"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M -50 150 L 150 150 L 250 250 L 250 1200" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.5" />
+    <circle cx="150" cy="150" r="4" fill="#ffffff" opacity="0.8" />
+    <circle cx="250" cy="250" r="4" fill="#ffffff" opacity="0.8" />
+    <path d="M 110vw 250 L calc(100vw - 200px) 250 L calc(100vw - 300px) 350 L calc(100vw - 300px) 1200"
+      stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.5" />
+    <circle cx="calc(100vw - 200px)" cy="250" r="4" fill="#ffffff" opacity="0.8" />
+    <circle cx="calc(100vw - 300px)" cy="350" r="4" fill="#ffffff" opacity="0.8" />
 
-      <path
-        d="M calc(100vw - 120px) -50 L calc(100vw - 120px) 450 L calc(100vw - 180px) 510 L calc(100vw - 180px) 900"
-        stroke="#67e8f9"
-        stroke-width="2"
-        fill="none"
-        opacity="0.6"
-      />
-      <circle
-        cx="calc(100vw - 120px)"
-        cy="450"
-        r="5"
-        fill="#67e8f9"
-        opacity="0.9"
-      />
-    </svg>
+    <path d="M 80 -50 L 80 300 L 150 370 L 150 800" stroke="#fcd34d" stroke-width="2" fill="none" opacity="0.6" />
+    <circle cx="80" cy="300" r="5" fill="#fcd34d" opacity="0.9" />
 
-    <!-- Container Principal do Cartaz -->
+    <path d="M calc(100vw - 120px) -50 L calc(100vw - 120px) 450 L calc(100vw - 180px) 510 L calc(100vw - 180px) 900"
+      stroke="#67e8f9" stroke-width="2" fill="none" opacity="0.6" />
+    <circle cx="calc(100vw - 120px)" cy="450" r="5" fill="#67e8f9" opacity="0.9" />
+  </svg>
+
+  <!-- Container Principal do Cartaz -->
+  <div id="poster" class="glass-panel w-full max-w-[95%] 2xl:max-w-[1400px] rounded-3xl overflow-hidden relative">
+    <!-- Elementos decorativos luminosos (Neon) -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-teal-400 to-blue-500"></div>
     <div
-      id="poster"
-      class="glass-panel w-full max-w-[95%] 2xl:max-w-[1400px] rounded-3xl overflow-hidden relative"
-    >
-      <!-- Elementos decorativos luminosos (Neon) -->
-      <div
-        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-teal-400 to-blue-500"
-      ></div>
-      <div
-        class="absolute -top-32 -left-32 w-64 h-64 bg-yellow-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20"
-      ></div>
-      <div
-        class="absolute -bottom-32 -right-32 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20"
-      ></div>
+      class="absolute -top-32 -left-32 w-64 h-64 bg-yellow-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20">
+    </div>
+    <div
+      class="absolute -bottom-32 -right-32 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20">
+    </div>
 
-      <div class="p-8 sm:p-12 relative z-10">
-        <!-- Cabeçalho -->
-        <div class="flex flex-col items-center text-center mb-12">
-          <div
-            class="inline-flex items-center justify-center p-4 bg-blue-500/10 rounded-2xl mb-6 border border-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.15)]"
-          >
-          
-          <img src="https://iee.sed.sc.gov.br/images/logos-instituto/logo_IEE_transparente.png" alt="Logo IEE" class="w-20 h-20 object-contain" />
-            
-          </div>
+    <div class="p-8 sm:p-12 relative z-10">
+      <!-- Cabeçalho -->
+      <div class="flex flex-col md:flex-row items-center justify-between w-full mb-12 gap-6 relative z-10">
+
+        <div class="flex-shrink-0 flex justify-center md:justify-start w-full md:w-40">
+          <img src="https://iee.sed.sc.gov.br/images/logos-instituto/logo_IEE_transparente.png" alt="Logo IEE"
+            class="w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]" />
+        </div>
+
+        <div class="text-center flex-1 flex flex-col items-center px-4">
           <h1
-            class="title-font text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-400 mb-2 tracking-wide uppercase"
-          >
-            Núcleo de Tecnologias Educadionais do IEE
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase text-transparent bg-clip-text bg-gradient-to-b from-teal-200 via-cyan-400 to-teal-700 drop-shadow-[0_4px_3px_rgba(0,0,0,0.8)] tracking-wide mb-2 leading-tight">
+            Núcleo de Tecnologias Educacionais do IEE
           </h1>
-          <p
-            class="text-slate-400 text-lg sm:text-xl tracking-widest uppercase tech-font mt-2"
-          >
+          <p class="text-slate-300 text-lg md:text-xl tracking-widest uppercase font-mono mt-2">
             Acesso à Rede Wi-Fi
           </p>
         </div>
 
-        <!-- Grade das Redes -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-full mx-auto"
-        >
-          <!-- Ala Central -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Ala Central
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >CENTR@LIEE</code
-              >
-              <button
-                onclick="copyText('CENTR@LIEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Ala EDA -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-indigo-500/10 rounded-lg group-hover:bg-indigo-500/20 transition-colors"
-              >
-                <i data-lucide="network" class="w-5 h-5 text-indigo-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Ala EDA
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-indigo-300"
-                >EDA@0275</code
-              >
-              <button
-                onclick="copyText('EDA@0275', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Ala Magistério -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Ala Magistério
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >MagisProfIEE</code
-              >
-              <button
-                onclick="copyText('MagisProfIEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          
-          <!-- Auditório Pedro Bosco -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors"
-              >
-                <i data-lucide="mic" class="w-5 h-5 text-pink-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Auditório Pedro Bosco
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-pink-300">Pedro@IEE</code>
-              <button
-                onclick="copyText('Pedro@IEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Banda -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors"
-              >
-                <i data-lucide="music" class="w-5 h-5 text-pink-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Banda
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-pink-300"
-                >AEEBand.AEE</code
-              >
-              <button
-                onclick="copyText('AEEBand.AEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Biblioteca-IEE -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors"
-              >
-                <i data-lucide="book" class="w-5 h-5 text-pink-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Biblioteca-IEE
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-pink-300"
-                >Bibl1o-IEE</code
-              >
-              <button
-                onclick="copyText('Bibl1o-IEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Coord Central -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Coord Central
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >Baixa#CB2024@</code
-              >
-              <button
-                onclick="copyText('Baixa#CB2024@', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Coord Ginasio -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Coord Ginasio
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >Ginasio2022</code
-              >
-              <button
-                onclick="copyText('Ginasio2022', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Coord Magistério -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Coord Magistério
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >MagisProfIEE</code
-              >
-              <button
-                onclick="copyText('MagisProfIEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Coord Sul Alta -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Coord Sul Alta
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >Sulalta@2024</code
-              >
-              <button
-                onclick="copyText('Sulalta@2024', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Coordenação Central -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors"
-              >
-                <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Coordenação Central
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-blue-300"
-                >CENTR@LIEE</code
-              >
-              <button
-                onclick="copyText('CENTR@LIEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- EDA -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-indigo-500/10 rounded-lg group-hover:bg-indigo-500/20 transition-colors"
-              >
-                <i data-lucide="network" class="w-5 h-5 text-indigo-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                EDA
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-indigo-300"
-                >Eda@0275</code
-              >
-              <button
-                onclick="copyText('Eda@0275', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Estudio de Danca -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors"
-              >
-                <i data-lucide="speaker" class="w-5 h-5 text-pink-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Estudio de Danca
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-pink-300"
-                >EstudioDancaIEE</code
-              >
-              <button
-                onclick="copyText('EstudioDancaIEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- GINASIO-IEE -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors"
-              >
-                <i data-lucide="trophy" class="w-5 h-5 text-orange-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                GINASIO-IEE
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-orange-300"
-                >Sports0275</code
-              >
-              <button
-                onclick="copyText('Sports0275', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Ginástica - IEE -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors"
-              >
-                <i data-lucide="activity" class="w-5 h-5 text-orange-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Ginástica - IEE
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-orange-300"
-                >winning.gym</code
-              >
-              <button
-                onclick="copyText('winning.gym', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- IEE-Sports -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors"
-              >
-                <i data-lucide="trophy" class="w-5 h-5 text-orange-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                IEE-Sports
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-orange-300"
-                >Sports0275</code
-              >
-              <button
-                onclick="copyText('Sports0275', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- LABID -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i data-lucide="cpu" class="w-5 h-5 text-teal-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                LABID
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300"
-                >LABID-2022</code
-              >
-              <button
-                onclick="copyText('LABID-2022', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lab Anexo Magisterio -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i data-lucide="monitor" class="w-5 h-5 text-teal-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Lab Anexo Magisterio
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300"
-                >L@bMag1s2024</code
-              >
-              <button
-                onclick="copyText('L@bMag1s2024', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lab Biologia -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i
-                  data-lucide="flask-conical"
-                  class="w-5 h-5 text-teal-400"
-                ></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Lab Biologia
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300">biologia</code>
-              <button
-                onclick="copyText('biologia', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lab Química -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i
-                  data-lucide="flask-conical"
-                  class="w-5 h-5 text-teal-400"
-                ></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Lab Química
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300"
-                >Quimica@275</code
-              >
-              <button
-                onclick="copyText('Quimica@275', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lab. Magistério -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i data-lucide="monitor" class="w-5 h-5 text-teal-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Lab. Magistério
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300">Magis-IEE</code>
-              <button
-                onclick="copyText('Magis-IEE', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lab. Matemática -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i data-lucide="calculator" class="w-5 h-5 text-teal-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Lab. Matemática
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300"
-                >matematica</code
-              >
-              <button
-                onclick="copyText('matematica', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lab. Português -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors"
-              >
-                <i data-lucide="book-open" class="w-5 h-5 text-teal-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Lab. Português
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-teal-300">Portugues</code>
-              <button
-                onclick="copyText('Portugues', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- MAGIS-FSE -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors"
-              >
-                <i data-lucide="book-open" class="w-5 h-5 text-purple-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                MAGIS-FSE
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-purple-300"
-                >M@gisFSE-133</code
-              >
-              <button
-                onclick="copyText('M@gisFSE-133', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Plantão Pedagógico -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors"
-              >
-                <i data-lucide="users" class="w-5 h-5 text-purple-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Plantão Pedagógico
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-purple-300"
-                >PlantPedag</code
-              >
-              <button
-                onclick="copyText('PlantPedag', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Profes.CELE -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors"
-              >
-                <i
-                  data-lucide="graduation-cap"
-                  class="w-5 h-5 text-purple-400"
-                ></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Profes.CELE
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-purple-300"
-                >Pr0f3s(3le</code
-              >
-              <button
-                onclick="copyText('Pr0f3s(3le', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Professores -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors"
-              >
-                <i
-                  data-lucide="graduation-cap"
-                  class="w-5 h-5 text-purple-400"
-                ></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Professores (Ala Central)
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-purple-300"
-                >Inst275@p</code
-              >
-              <button
-                onclick="copyText('Inst275@p', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Professores - EDA -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors"
-              >
-                <i
-                  data-lucide="graduation-cap"
-                  class="w-5 h-5 text-purple-400"
-                ></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Professores - EDA
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-purple-300"
-                >Profes.ED@</code
-              >
-              <button
-                onclick="copyText('Profes.ED@', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Wi-fi Ed. Fisica -->
-          <div
-            class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors"
-              >
-                <i data-lucide="activity" class="w-5 h-5 text-orange-400"></i>
-              </div>
-              <h2 class="title-font text-lg font-bold text-white leading-tight">
-                Wi-fi Ed. Fisica
-              </h2>
-            </div>
-            <div
-              class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto"
-            >
-              <code class="tech-font text-[15px] text-orange-300"
-                >@#b3t0#@</code
-              >
-              <button
-                onclick="copyText('@#b3t0#@', this)"
-                class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
-                title="Copiar"
-              >
-                <i data-lucide="copy" class="w-4 h-4"></i>
-              </button>
-            </div>
+        <div class="flex-shrink-0 flex justify-center md:justify-end w-full md:w-40">
+          <img src="https://drive.google.com/file/d/1WjTnNPw2FN32kb2KnVL3MydQlJWvuodP/view?usp=sharing" alt="Logo IEE"
+            class="w-28 h-28 md:w-36 md:h-36 border-2 border-dashed border-teal-400/50 rounded-xl flex items-center justify-center text-teal-300/70 text-sm font-semibold text-center bg-teal-900/20 backdrop-blur-sm shadow-[0_0_15px_rgba(20,184,166,0.3)]">
+            Espaço<br>Logo NTE
           </div>
         </div>
 
-        <!-- Rodapé -->
-        <div
-          class="mt-12 pt-6 border-t border-white/5 text-center flex flex-col items-center gap-2"
-        >
-          <div class="flex items-center gap-2 text-slate-400">
-            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-500"></i>
-            <span class="text-sm font-medium tracking-wide"
-              >Conexão Segura da Escola</span
-            >
+      </div>
+
+      <!-- Grade das Redes -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-full mx-auto">
+        <!-- Ala Central -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Ala Central
+            </h2>
           </div>
-          <div class="w-full text-center text-sm text-slate-400 mt-12 pb-6">
-          &copy; 2026 Direitos Reservados NTE do Instituto Estadual de Educação
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">CENTR@LIEE</code>
+            <button onclick="copyText('CENTR@LIEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ala EDA -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-indigo-500/10 rounded-lg group-hover:bg-indigo-500/20 transition-colors">
+              <i data-lucide="network" class="w-5 h-5 text-indigo-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Ala EDA
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-indigo-300">EDA@0275</code>
+            <button onclick="copyText('EDA@0275', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ala Magistério -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Ala Magistério
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">MagisProfIEE</code>
+            <button onclick="copyText('MagisProfIEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Auditório Pedro Bosco -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors">
+              <i data-lucide="mic" class="w-5 h-5 text-pink-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Auditório Pedro Bosco
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-pink-300">Pedro@IEE</code>
+            <button onclick="copyText('Pedro@IEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Banda -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors">
+              <i data-lucide="music" class="w-5 h-5 text-pink-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Banda
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-pink-300">AEEBand.AEE</code>
+            <button onclick="copyText('AEEBand.AEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Biblioteca-IEE -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors">
+              <i data-lucide="book" class="w-5 h-5 text-pink-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Biblioteca-IEE
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-pink-300">Bibl1o-IEE</code>
+            <button onclick="copyText('Bibl1o-IEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Coord Central -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Coord Central
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">Baixa#CB2024@</code>
+            <button onclick="copyText('Baixa#CB2024@', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Coord Ginasio -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Coord Ginasio
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">Ginasio2022</code>
+            <button onclick="copyText('Ginasio2022', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Coord Magistério -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Coord Magistério
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">MagisProfIEE</code>
+            <button onclick="copyText('MagisProfIEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Coord Sul Alta -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Coord Sul Alta
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">Sulalta@2024</code>
+            <button onclick="copyText('Sulalta@2024', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Coordenação Central -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+              <i data-lucide="map-pin" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Coordenação Central
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-blue-300">CENTR@LIEE</code>
+            <button onclick="copyText('CENTR@LIEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- EDA -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-indigo-500/10 rounded-lg group-hover:bg-indigo-500/20 transition-colors">
+              <i data-lucide="network" class="w-5 h-5 text-indigo-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              EDA
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-indigo-300">Eda@0275</code>
+            <button onclick="copyText('Eda@0275', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Estudio de Danca -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-pink-500/10 rounded-lg group-hover:bg-pink-500/20 transition-colors">
+              <i data-lucide="speaker" class="w-5 h-5 text-pink-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Estudio de Danca
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-pink-300">EstudioDancaIEE</code>
+            <button onclick="copyText('EstudioDancaIEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- GINASIO-IEE -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors">
+              <i data-lucide="trophy" class="w-5 h-5 text-orange-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              GINASIO-IEE
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-orange-300">Sports0275</code>
+            <button onclick="copyText('Sports0275', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ginástica - IEE -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors">
+              <i data-lucide="activity" class="w-5 h-5 text-orange-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Ginástica - IEE
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-orange-300">winning.gym</code>
+            <button onclick="copyText('winning.gym', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- IEE-Sports -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors">
+              <i data-lucide="trophy" class="w-5 h-5 text-orange-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              IEE-Sports
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-orange-300">Sports0275</code>
+            <button onclick="copyText('Sports0275', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- LABID -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="cpu" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              LABID
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">LABID-2022</code>
+            <button onclick="copyText('LABID-2022', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lab Anexo Magisterio -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="monitor" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Lab Anexo Magisterio
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">L@bMag1s2024</code>
+            <button onclick="copyText('L@bMag1s2024', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lab Biologia -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="flask-conical" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Lab Biologia
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">biologia</code>
+            <button onclick="copyText('biologia', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lab Química -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="flask-conical" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Lab Química
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">Quimica@275</code>
+            <button onclick="copyText('Quimica@275', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lab. Magistério -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="monitor" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Lab. Magistério
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">Magis-IEE</code>
+            <button onclick="copyText('Magis-IEE', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lab. Matemática -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="calculator" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Lab. Matemática
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">matematica</code>
+            <button onclick="copyText('matematica', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lab. Português -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-teal-500/10 rounded-lg group-hover:bg-teal-500/20 transition-colors">
+              <i data-lucide="book-open" class="w-5 h-5 text-teal-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Lab. Português
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-teal-300">Portugues</code>
+            <button onclick="copyText('Portugues', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- MAGIS-FSE -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
+              <i data-lucide="book-open" class="w-5 h-5 text-purple-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              MAGIS-FSE
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-purple-300">M@gisFSE-133</code>
+            <button onclick="copyText('M@gisFSE-133', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Plantão Pedagógico -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
+              <i data-lucide="users" class="w-5 h-5 text-purple-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Plantão Pedagógico
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-purple-300">PlantPedag</code>
+            <button onclick="copyText('PlantPedag', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Profes.CELE -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-purple-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Profes.CELE
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-purple-300">Pr0f3s(3le</code>
+            <button onclick="copyText('Pr0f3s(3le', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Professores -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-purple-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Professores (Ala Central)
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-purple-300">Inst275@p</code>
+            <button onclick="copyText('Inst275@p', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Professores - EDA -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-purple-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Professores - EDA
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-purple-300">Profes.ED@</code>
+            <button onclick="copyText('Profes.ED@', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wi-fi Ed. Fisica -->
+        <div class="glass-card rounded-xl p-4 flex flex-col group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors">
+              <i data-lucide="activity" class="w-5 h-5 text-orange-400"></i>
+            </div>
+            <h2 class="title-font text-lg font-bold text-white leading-tight">
+              Wi-fi Ed. Fisica
+            </h2>
+          </div>
+          <div class="flex items-center justify-between bg-black/30 p-2.5 rounded-lg border border-white/5 mt-auto">
+            <code class="tech-font text-[15px] text-orange-300">@#b3t0#@</code>
+            <button onclick="copyText('@#b3t0#@', this)"
+              class="p-1.5 hover:bg-white/10 rounded-md transition-colors text-slate-400 hover:text-white"
+              title="Copiar">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
           </div>
         </div>
       </div>
+
+      <!-- Rodapé -->
+      <div class="mt-12 pt-6 border-t border-white/5 text-center flex flex-col items-center gap-2">
+        <div class="flex items-center gap-2 text-slate-400">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-500"></i>
+          <span class="text-sm font-medium tracking-wide">Conexão Segura da Escola</span>
+        </div>
+        <div class="w-full text-center text-sm text-slate-400 mt-12 pb-6">
+          &copy; 2026 Direitos Reservados NTE do Instituto Estadual de Educação
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Alerta de cópia (Toast) -->
-    <div
-      id="toast"
-      class="fixed bottom-8 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-emerald-500/90 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(16,185,129,0.3)] flex items-center gap-3 border border-emerald-400/50 z-50"
-    >
-      <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-      <span class="font-semibold tracking-wide"
-        >Senha copiada com sucesso!</span
-      >
-    </div>
+  <!-- Alerta de cópia (Toast) -->
+  <div id="toast"
+    class="fixed bottom-8 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-emerald-500/90 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(16,185,129,0.3)] flex items-center gap-3 border border-emerald-400/50 z-50">
+    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+    <span class="font-semibold tracking-wide">Senha copiada com sucesso!</span>
+  </div>
 
-    <script>
-      // Inicializa os ícones do Lucide
-      lucide.createIcons();
+  <script>
+    // Inicializa os ícones do Lucide
+    lucide.createIcons();
 
-      // Função para copiar o texto (compatível com iFrames)
-      function copyText(text, btnElement) {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        textarea.style.position = "fixed";
-        textarea.style.opacity = "0";
-        document.body.appendChild(textarea);
-        textarea.select();
+    // Função para copiar o texto (compatível com iFrames)
+    function copyText(text, btnElement) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
 
-        try {
-          document.execCommand("copy");
-          showToast();
+      try {
+        document.execCommand("copy");
+        showToast();
 
-          // Feedback visual no botão
-          const icon = btnElement.querySelector("i");
-          const originalIcon = icon.getAttribute("data-lucide");
-          icon.setAttribute("data-lucide", "check");
-          btnElement.classList.add("text-emerald-400", "bg-emerald-500/20");
-          lucide.createIcons();
-
-          setTimeout(() => {
-            icon.setAttribute("data-lucide", originalIcon);
-            btnElement.classList.remove(
-              "text-emerald-400",
-              "bg-emerald-500/20"
-            );
-            lucide.createIcons();
-          }, 2000);
-        } catch (err) {
-          console.error("Erro ao copiar: ", err);
-        }
-
-        document.body.removeChild(textarea);
-      }
-
-      // Função para mostrar notificação flutuante
-      function showToast() {
-        const toast = document.getElementById("toast");
-        toast.classList.remove("translate-y-24", "opacity-0");
+        // Feedback visual no botão
+        const icon = btnElement.querySelector("i");
+        const originalIcon = icon.getAttribute("data-lucide");
+        icon.setAttribute("data-lucide", "check");
+        btnElement.classList.add("text-emerald-400", "bg-emerald-500/20");
+        lucide.createIcons();
 
         setTimeout(() => {
-          toast.classList.add("translate-y-24", "opacity-0");
-        }, 3000);
+          icon.setAttribute("data-lucide", originalIcon);
+          btnElement.classList.remove(
+            "text-emerald-400",
+            "bg-emerald-500/20"
+          );
+          lucide.createIcons();
+        }, 2000);
+      } catch (err) {
+        console.error("Erro ao copiar: ", err);
       }
-    </script>
+
+      document.body.removeChild(textarea);
+    }
+
+    // Função para mostrar notificação flutuante
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.remove("translate-y-24", "opacity-0");
+
+      setTimeout(() => {
+        toast.classList.add("translate-y-24", "opacity-0");
+      }, 3000);
+    }
+  </script>
 </body>
+
 </html>
